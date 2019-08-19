@@ -10,7 +10,10 @@
 using namespace std;
 int main(){
   int Quantity, Rows, Collums;
-  vector <vector <int> > armada;
+  vector <Map*> armada;
+  for(int k = 0; k < Quantity; k++){
+    armada.push_back(new Map(Rows, Collums)); 
+  }
   //inputs
   //fazer o front
   return 0;
