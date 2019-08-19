@@ -7,6 +7,7 @@
 
 int main(){
   int Quantity, Rows, Collums;
-
+  //inputs
+  //fazer o front
   return 0;
 }
