@@ -1,4 +1,4 @@
-#include <iosteam>
+#include <iostream>
 
 // Objetivos:
 // 1. Fazer o criador de navios, que gera o documento no formato da armada.png aleatoriamente a partir do valor de rows e collums e fornece as posição para 2
