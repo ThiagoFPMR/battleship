@@ -15,10 +15,11 @@ class Map{
         3 -> Submarine
         */
         int ships[4] = {1, 2, 3, 4};
+        char ships_char[4] = {'B', 'D', 'C', 'S'};
         int random = rand() % 4;
         ships[random] -= 1;
         for (int i = 0; i < 4; i++){
-          std::cout << ships[i] << std::endl;
+          std::cout << ships[i] << " " << ships_char[i] << std::endl;
         }
 
 
