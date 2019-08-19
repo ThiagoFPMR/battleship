@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <./models/Map.cpp>
+#include "./models/Map.cpp"
 
 // Objetivos:
 // 1. Fazer o criador de navios, que gera o documento no formato da armada.png aleatoriamente a partir do valor de rows e collums e fornece as posição para 2
@@ -11,8 +11,10 @@ using namespace std;
 int main(){
   int Quantity, Rows, Collums;
   vector <Map*> armada;
+
+  Quantity = 1;
   for(int k = 0; k < Quantity; k++){
-    armada.push_back(new Map(Rows, Collums)); 
+    armada.push_back(new Map()); 
   }
   //inputs
   //fazer o front
