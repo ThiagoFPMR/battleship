@@ -14,9 +14,13 @@ int main(){
 
   Quantity = 1;
   for(int k = 0; k < Quantity; k++){
-    armada.push_back(new Map()); 
+    armada.push_back(new Map());
   }
   //inputs
   //fazer o front
   return 0;
 }
+
+/* OBS: Se o tamanho fornecido resultar em uma matriz com area menor que 20,
+sinalizar que o input foi incorreto (os 10 barcos ocupam 20 espaços, sem
+contar a agua)*/
