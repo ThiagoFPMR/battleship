@@ -8,15 +8,18 @@
 // 3. Fazer a função ler quantity rows e collums a partir da chamada pelo terminal (olhar slack)
 
 using namespace std;
-int main(){
+int main(int argc, char *argv[ ]){
   int Quantity, Rows, Collums;
   vector <Map*> armada;
-
-  Quantity = 1;
+  
+  // O primeiro argumento deve ser a quantidade
+  Quantity = atoi(argv[1]);
+  srand(time(NULL));
   for(int k = 0; k < Quantity; k++){
     armada.push_back(new Map());
   }
-  //inputs
+    cout << "Q:" << Quantity << endl;
+
   //fazer o front
   return 0;
 }
