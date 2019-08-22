@@ -15,53 +15,54 @@ class Map{
        Board[Rows][Collums] = {{0}};
        int random;
 
-       // Posicionar o Battleship
+       // É melhor criar uma função universal e usa-la para todos os barcos
 
-       // Definir Direção
-       int directions[2] = {'H', 'V'};
-       int direction = directions[rand() % 2];
+      void add_ship(Rows, Collums, lenght){
+        // Obs: largura do barco (lenght) será argumento para a função
 
-       // Escolher as cordenadas m (linha) e n (coluna)
-       m = rand() % (Rows - 4);
-       n = rand() % (Collums - 4);
+        // Definir Direção
+        int directions[2] = {'H', 'V'};
+        int direction = directions[rand() % 2];
 
-       int i = m - 1, i_max = m + 1, e = n - 1, e_max = n + 4;
-       if (i < 0){
-         i = m;
-       }
-       if (i_max >= Rows){
-         i_max = m;
-       }
-       if (e < 0){
-         e = n;
-       }
-       if (e_max >= Collums){
-         e_max = n + 3;
-       }
+        // Escolher as cordenadas m (linha) e n (coluna)
+        int m = rand() % (Rows - 4);
+        int n = rand() % (Collums - 4);
 
-       for (i; i <= i_max; i++){
-         for (e; e <= e_max; e++){
-           Board[i][e] = 1;
-         }
-       }
+        // Posicionamento
+        switch(direction){
+          case 'H': int i = m - 1, i_max = m + lenght, e = n - 1, e_max = n + 1; break;
+          case 'V': int i = m - 1, i_max = m + lenght, e = n - 1, e_max = n + 1; break;
+        }
 
+        if (i < 0){i = m;}
 
+        if (i_max >= Rows){
+          switch(direction){
+            case 'H': i_max = m; break;
+            case 'V': i_max = m + lenght - 1; break;
+          }
+        }
+        if (e < 0){e = n;}
 
+        if (e_max >= Collums){
+          switch(direction){
+            case 'H': e_max = n + lenght - 1; break;
+            case 'V': e_max = n; break;
+          }
+        }
 
+        for (i; i <= i_max; i++){
+          for (e; e <= e_max; e++){
+            Board[i][e] = 1;
+          }
+        }
+      }
 
+      // Posicionar o Battleship
 
-       //Preenchendo o espaço ocupado pelo vetor
-       if (m > 0 && m < Rows - 1  && n > 0 && n < Collums -1){
-         for (int i = m - 1; i < m + 4; i++){
-           for (int e = n -1; i < n + 2; e++){
-             Board[i][e] = 1;
-           }
-         }
-       }
-
-
+      add_ship(Rows, Collums, 4);
 
 
 
     }
-};
+}
