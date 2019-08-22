@@ -11,7 +11,7 @@ using namespace std;
 int main(int argc, char *argv[ ]){
   int Quantity, Rows, Collums;
   vector <Map*> armada;
-  
+
   // O primeiro argumento deve ser a quantidade
   Quantity = atoi(argv[1]);
   srand(time(NULL));
@@ -24,6 +24,4 @@ int main(int argc, char *argv[ ]){
   return 0;
 }
 
-/* OBS: Se o tamanho fornecido resultar em uma matriz com area menor que 20,
-sinalizar que o input foi incorreto (os 10 barcos ocupam 20 espaços, sem
-contar a agua)*/
+// OBS: Se o tamanho fornecido resultar em uma matriz cmenor que 6x7 sinalizar que o input foi incorreto
