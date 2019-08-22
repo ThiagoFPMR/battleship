@@ -25,8 +25,8 @@ class Map{
         int direction = directions[rand() % 2];
 
         // Escolher as cordenadas m (linha) e n (coluna)
-        int m = rand() % (Rows - 4);
-        int n = rand() % (Collums - 4);
+        int m = rand() % (Rows - lenght;
+        int n = rand() % (Collums - lenght);
 
         // Posicionamento
         switch(direction){
