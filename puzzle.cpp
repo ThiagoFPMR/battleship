@@ -10,15 +10,15 @@
 using namespace std;
 int main(int argc, char *argv[ ]){
   int Quantity, Rows, Collums;
-  vector <Map*> armada;
+  vector <Map*> matBool; 
 
   // O primeiro argumento deve ser a quantidade
   Quantity = atoi(argv[1]);
   srand(time(NULL));
   for(int k = 0; k < Quantity; k++){
-    //armada.push_back(new Map(Rows, Collums));
-    cout << Quantity;
-  }
+    matBool.push_back(new Map(Rows, Collums));
+    //cout << Quantity;
+  //} 
 
   //fazer o front
   return 0;
