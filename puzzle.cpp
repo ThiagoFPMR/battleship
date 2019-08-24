@@ -8,22 +8,23 @@
 // 3. Fazer a função ler quantity rows e collums a partir da chamada pelo terminal (olhar slack)
 
 using namespace std;
-int main(int argc, char *argv[]){
+int main(/*int argc, char *argv[] */){
   int quantity, rows, collums;
   vector <Map*> matBool; 
 
   //arguemntos na ordem
-  quantity = atoi(argv[0]);
+  quantity = 2;//atoi(argv[0]);
   rows = 10;//atoi(argv[1]);
   collums = 10;//atoi(argv[2]);
 
   srand(time(NULL));
+  cout << "compilou essa desgraça!!" << endl;
+  cout << quantity << endl;
   for(int k = 0; k < quantity; k++){
     matBool.push_back(new Map(rows, collums));
-    cout << quantity << endl;
     for(int w = 0; w <= matBool[k]->board.size(); w++)
       for(int j = 0; j <= matBool[k]->board[w].size(); j++)
-        cout << matBool[k]->board[w][j];
+        cout << matBool[k]->board[w][j] << endl;
   }
 
   //fazer o front
