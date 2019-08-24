@@ -22,9 +22,12 @@ int main(/*int argc, char *argv[] */){
   cout << quantity << endl;
   for(int k = 0; k < quantity; k++){
     matBool.push_back(new Map(rows, collums));
-    for(int w = 0; w <= matBool[k]->board.size(); w++)
-      for(int j = 0; j <= matBool[k]->board[w].size(); j++)
-        cout << matBool[k]->board[w][j] << endl;
+    cout << "\n\n\n\n";
+    for(int w = 0; w <= sizeof(matBool[k]->board); w++){
+      for(int j = 0; j <= sizeof(matBool[k]->board[w]); j++)
+        cout << matBool[k]->board[w][j];
+      cout << endl;
+    }
   }
 
   //fazer o front

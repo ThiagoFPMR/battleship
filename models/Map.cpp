@@ -1,7 +1,9 @@
 using namespace std;
+// usar .board (ou .map) e .armada
 class Map{
 public:
-  vector <vector<int>> board;
+  //vector <vector<int>> board;
+  int board[10][10];
   Map(int Rows, int Collums){
   /* Plano de Ataque:
       1. Decidir o tipo de barco a ser posicionado
@@ -13,7 +15,7 @@ public:
   */
     //valor de cada ship[x] será o tamanho da embarcação x
     vector<int> ships = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
-    //int board[Rows][Collums] = {{0}};
+    //int board[Rows][Collums] = {{0}}; //variavel temporaria pra board
     
     //guarda posições ocupadas
     vector <int> r_close;
@@ -29,8 +31,7 @@ public:
           //  armada e evitar mapas repetidos 
       if(rotation == 0)
         for(int s = r; s <= ships[k]; s++){
-          board[s][c] = 1;  //tem algo de errado com essa forma de atribuir
-                              //  valor nessa situação
+          board[s][c] = 1;
           r_close.push_back(s);
           c_close.push_back(c);
         }
@@ -61,6 +62,6 @@ public:
         }
       }
     } */
-    //boardR = board;
+    //board = boardT;
   }
 };
