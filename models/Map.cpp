@@ -14,11 +14,14 @@ public:
       5. Repetir para os 10 barcos
   */
     //valor de cada ship[x] será o tamanho da embarcação x
-    vector<int> ships = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
+    /* vector<int>*/int ships[10] = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
     //int board[Rows][Collums] = {{0}}; //variavel temporaria pra board
+    for(int l = 0; l <= sizeof(board); l++)
+      for(int c = 0; c <= sizeof(board[c]); c++)
+        board[c][l] = 0;
     
     //guarda posições ocupadas
-    vector <int> r_close;
+    /*vector <int> r_close;
     vector <int> c_close;
     
     for(int k = 0; k <= ships.size(); k++){
@@ -42,7 +45,7 @@ public:
           c_close.push_back(s);
         }
     }
-
+    
     // Posicionar o Battleship
 
 
@@ -52,7 +55,7 @@ public:
 
     // Escolher as cordenadas m (linha) e n (coluna)
     int m = rand() % (Rows - 4);
-    int n = rand() % (Collums - 4);
+    int n = rand() % (Collums - 4) */
 
     //Preenchendo o espaço ocupado pelo vetor
     /*if (m > 0 && m < Rows - 1  && n > 0 && n < Collums -1){
