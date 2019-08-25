@@ -29,7 +29,7 @@ public:
     
     // Posicionar o Battleship
     srand(time(NULL));
-    for(int k = 0; k <= ships.size(); k++){
+    for(int k = 0; k < ships.size(); k++){
       int r = rand() % (rows - 1 - ships[k]);
       int c = rand() % (collums - 1 - ships[k]);
       bool rotation = rand() % 2;
@@ -37,21 +37,22 @@ public:
       //add position de ships[] e água pra evitar colisão
       //add position so dos ships e exporta pra algum lugar pra criar
           //  armada e evitar mapas repetidos 
+      cout << "ships[k] = " << ships[k] << endl;
       if(rotation == 0)
-        for(int s = r; s <= ships[k]; s++){
-          //board[c][s] = 1;
+        for(int s = r; s <= (ships[k]+c); s++){
           r_close.push_back(s);
           c_close.push_back(c);
           cout << "s of rotation 0 = " << s << endl;
           cout << "c of rotation 0 = " << c << endl;
+          board[c][s] = 1;
         }
       else if(rotation == 1)
-        for(int s = c; s <= ships[k]; s++){
-          //board[s][r] = 1;
+        for(int s = c; s <= (ships[k]+c); s++){
           r_close.push_back(r);
           c_close.push_back(s);
           cout << "r of rotation 1 = " << r << endl;
           cout << "s of rotation 1 = " << s << endl;
+          board[s][r] = 1;
         }
       cout << "k = " << k << endl << endl;
     }
