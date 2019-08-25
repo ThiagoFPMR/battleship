@@ -4,8 +4,8 @@ class Map{
 public:
 
   vector <vector<int>> board;
-  vector <int> r_close;
-  vector <int> c_close;
+  vector <int> r_occupied;
+  vector <int> c_occupied;
   Map(int rows, int collums){
   /* Plano de Ataque:
       1. Decidir o tipo de barco a ser posicionado
@@ -25,7 +25,6 @@ public:
     for(int k = 0; k <= rows; k++)
       board.push_back(line);
     
-    //guarda posições ocupadas
     
     // Posicionar o Battleship
     srand(time(NULL));
@@ -34,24 +33,31 @@ public:
       int c = rand() % (collums - 1 - ships[k]);
       bool rotation = rand() % 2;
       
+      //conferir posições ocupadas
+      if(k != 0)  //pra evitar de pegar 'occupied' vazio
+        for (int w = 0; w < r_occupied.size(); w++){
+          cout << "entrou no loop" << endl;
+          if (r == r_occupied[w] && c == c_occupied[w]){
+              cout << "posição repetida" << endl;
+              r = rand() % (rows - ships[k]);
+              c = rand() % (collums - ships[k]);
+              w = 0;
+          }
+        }
       //add position de ships[] e água pra evitar colisão
       //add position so dos ships e exporta pra algum lugar pra criar
           //  armada e evitar mapas repetidos 
       cout << "ships[k] = " << ships[k] << endl;
       if(rotation == 0)
         for(int s = r; s <= (ships[k]+c); s++){
-          r_close.push_back(s);
-          c_close.push_back(c);
-          cout << "s of rotation 0 = " << s << endl;
-          cout << "c of rotation 0 = " << c << endl;
+          r_occupied.push_back(s);
+          c_occupied.push_back(c);
           board[c][s] = 1;
         }
       else if(rotation == 1)
         for(int s = c; s <= (ships[k]+c); s++){
-          r_close.push_back(r);
-          c_close.push_back(s);
-          cout << "r of rotation 1 = " << r << endl;
-          cout << "s of rotation 1 = " << s << endl;
+          r_occupied.push_back(r);
+          c_occupied.push_back(s);
           board[s][r] = 1;
         }
       cout << "k = " << k << endl << endl;
@@ -77,9 +83,9 @@ public:
     } */
   }
   void print_debug(void){
-    for(int k = 0; k < r_close.size(); k++){
-      cout << "r_close = " << r_close[k] <<  endl;
-      cout << "c_close = " << c_close[k] <<  endl;
+    for(int k = 0; k < r_occupied.size(); k++){
+      cout << "r_close = " << r_occupied[k] <<  endl;
+      cout << "c_close = " << c_occupied[k] <<  endl;
       cout << endl;
     }
   }
