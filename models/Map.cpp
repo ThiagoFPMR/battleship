@@ -3,7 +3,7 @@ using namespace std;
 class Map{
 public:
   //vector <vector<int>> board;
-  int board[10][10];
+  int board[2][2];
   Map(int Rows, int Collums){
   /* Plano de Ataque:
       1. Decidir o tipo de barco a ser posicionado
@@ -16,8 +16,8 @@ public:
     //valor de cada ship[x] será o tamanho da embarcação x
     /* vector<int>*/int ships[10] = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
     //int board[Rows][Collums] = {{0}}; //variavel temporaria pra board
-    for(int l = 0; l <= sizeof(board); l++)
-      for(int c = 0; c <= sizeof(board[c]); c++)
+    for(int l = 1; l <= sizeof(board); l++)
+      //for(int c = 1; c <= sizeof(board[c]); c++)
         board[c][l] = 0;
     
     //guarda posições ocupadas

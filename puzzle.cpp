@@ -14,9 +14,9 @@ int main(/*int argc, char *argv[] */){
   vector <Map*> matBool; 
 
   //arguemntos na ordem
-  quantity = 2;//atoi(argv[0]);
-  rows = 10;//atoi(argv[1]);
-  collums = 10;//atoi(argv[2]);
+  quantity = 1;//atoi(argv[0]);
+  rows = 7;//atoi(argv[1]);
+  collums = 7;//atoi(argv[2]);
 
   srand(time(NULL));
   cout << "compilou essa desgraça!!" << endl;
@@ -24,8 +24,8 @@ int main(/*int argc, char *argv[] */){
   for(int k = 0; k < quantity; k++){
     matBool.push_back(new Map(rows, collums));
     cout << "\n\n\n\n";
-    for(int w = 0; w <= sizeof(matBool[k]->board); w++){
-      for(int j = 0; j <= sizeof(matBool[k]->board[w]); j++)
+    for(int w = 1; w <= sizeof(matBool[k]->board); w++){
+      for(int j = 1; j <= sizeof(matBool[k]->board[w]); j++)
         cout << matBool[k]->board[w][j];
       cout << endl;
     }
