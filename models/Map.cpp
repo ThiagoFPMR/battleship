@@ -2,8 +2,8 @@ using namespace std;
 // usar .board (ou .map) e .armada
 class Map{
 public:
-  //vector <vector<int>> board;
-  int board[2][2];
+
+  vector <vector<int>> board;
   Map(int Rows, int Collums){
   /* Plano de Ataque:
       1. Decidir o tipo de barco a ser posicionado
@@ -14,14 +14,17 @@ public:
       5. Repetir para os 10 barcos
   */
     //valor de cada ship[x] será o tamanho da embarcação x
-    /* vector<int>*/int ships[10] = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
-    //int board[Rows][Collums] = {{0}}; //variavel temporaria pra board
-    for(int l = 1; l <= sizeof(board); l++)
-      //for(int c = 1; c <= sizeof(board[c]); c++)
-        board[c][l] = 0;
+    vector <int> ships = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
+    vector <int> line;
+    
+    //inicializa "board"
+    for(int k = 0; k < Collums; k++)
+      line.push_back(0);
+    for(int k = 0; k < Rows; k++)
+      board.push_back(line);
     
     //guarda posições ocupadas
-    /*vector <int> r_close;
+    vector <int> r_close;
     vector <int> c_close;
     
     for(int k = 0; k <= ships.size(); k++){
@@ -50,12 +53,12 @@ public:
 
 
     // Definir Direção
-    int directions[2] = {'H', 'V'};
-    int direction = directions[rand() % 2];
+    //int directions[2] = {'H', 'V'};
+    //int direction = directions[rand() % 2];
 
     // Escolher as cordenadas m (linha) e n (coluna)
-    int m = rand() % (Rows - 4);
-    int n = rand() % (Collums - 4) */
+    //int m = rand() % (Rows - 4);
+    //int n = rand() % (Collums - 4);
 
     //Preenchendo o espaço ocupado pelo vetor
     /*if (m > 0 && m < Rows - 1  && n > 0 && n < Collums -1){
@@ -65,6 +68,5 @@ public:
         }
       }
     } */
-    //board = boardT;
   }
 };

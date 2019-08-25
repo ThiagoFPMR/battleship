@@ -15,17 +15,19 @@ int main(/*int argc, char *argv[] */){
 
   //arguemntos na ordem
   quantity = 1;//atoi(argv[0]);
-  rows = 7;//atoi(argv[1]);
-  collums = 7;//atoi(argv[2]);
+  //linhas e colunas tem q ser -1 do input real
+  rows = 10;//atoi(argv[1]);
+  collums = 10;//atoi(argv[2]);
 
   srand(time(NULL));
   cout << "compilou essa desgraça!!" << endl;
   cout << quantity << endl;
   for(int k = 0; k < quantity; k++){
     matBool.push_back(new Map(rows, collums));
-    cout << "\n\n\n\n";
-    for(int w = 1; w <= sizeof(matBool[k]->board); w++){
-      for(int j = 1; j <= sizeof(matBool[k]->board[w]); j++)
+    cout << "\n\n";
+    
+    for(int w = 0; w <= matBool[k]->board.size(); w++){
+      for(int j = 1; j <= matBool[k]->board[w].size(); j++)
         cout << matBool[k]->board[w][j];
       cout << endl;
     }
