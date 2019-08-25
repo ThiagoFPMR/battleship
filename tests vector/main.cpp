@@ -24,6 +24,6 @@ int main(){
             for(int k2 = 0; k2 < vec[j][k].size(); k2++)
                 cout << dim2[k][k2] << ", ";
         }
-    cout << "\n\n\n";
+        cout << "\n\n\n";
     }
 }
