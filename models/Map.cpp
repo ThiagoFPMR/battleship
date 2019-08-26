@@ -3,7 +3,7 @@ using namespace std;
 class Map{
 public:
 
-  vector <vector<char>> board;
+  vector <vector<string>> board;
   vector <int> r_occupied;
   vector <int> c_occupied;
   Map(int rows, int collums){
@@ -17,11 +17,11 @@ public:
   */
     //valor de cada ship[x] será o tamanho da embarcação x
     vector <int> ships = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
-    vector <char> line;  //inicicializador de "board"
+    vector <string> line;  //inicicializador de "board"
     
     //inicializa "board"
     for(int k = 0; k <= collums; k++)
-      line.push_back('.');
+      line.push_back(".");
     for(int k = 0; k <= rows; k++)
       board.push_back(line);
     
@@ -59,7 +59,7 @@ public:
             //add barco
             r_occupied.push_back(s);
             c_occupied.push_back(c);
-            board[c][s] = 1;
+            board[c][s] = "●";
             
             //add água *pontas*
             //reaproveitar pra definir visual
@@ -115,7 +115,7 @@ public:
             c_occupied.push_back(s);
           }
       } else {  //submarinos
-        board[c][r] = 1;
+        board[c][r] = "●";
         r_occupied.push_back(r);
         c_occupied.push_back(c);
       }
