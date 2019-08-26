@@ -36,9 +36,9 @@ public:
       //conferir posições ocupadas
       if(k != 0)  //pra evitar de pegar 'occupied' vazio
         for (int w = 0; w < r_occupied.size(); w++){
-          cout << "entrou no loop" << endl;
+          //cout << "entrou no loop" << endl;
           if (r == r_occupied[w] && c == c_occupied[w]){
-              cout << "posição repetida" << endl;
+              //cout << "posição repetida" << endl;
               r = rand() % (rows - ships[k]);
               c = rand() % (collums - ships[k]);
               w = 0;
@@ -49,46 +49,74 @@ public:
       cout << "ships[k] = " << ships[k] << endl;
 
       // seperar "rotation" do resto deve cortar o tamanho da estrutura pela metade
-      if(rotation == 0)
-        for(int s = r; s <= (ships[k]+r); s++){
-          //add barco
-          r_occupied.push_back(s);
-          c_occupied.push_back(c);
-          board[c][s] = 1;
-          //add água *pontas*
-          if(s == ships[k]+r){   //achou o começo 
-            r_occupied.push_back(s-1);
-            c_occupied.push_back(c-1);
-            r_occupied.push_back(s-1);
+      
+      if(ships[k] > 1){
+        if(rotation == 0){
+          for(int s = r; s < (ships[k]+r); s++){
+            //add barco
+            r_occupied.push_back(s);
             c_occupied.push_back(c);
-            r_occupied.push_back(s-1);
+            board[c][s] = 1;
+            
+            //add água *pontas*
+            //reaproveitar pra definir visual
+            if(s == r){   //achou o começo 
+              r_occupied.push_back(s-1);
+              c_occupied.push_back(c-1);
+              r_occupied.push_back(s-1);
+              c_occupied.push_back(c);
+              r_occupied.push_back(s-1);
+              c_occupied.push_back(c+1);
+            }
+            else if(s == ships[k]+r){   //achou o fim
+              r_occupied.push_back(s+1);
+              c_occupied.push_back(c-1);
+              r_occupied.push_back(s+1);
+              c_occupied.push_back(c);
+              r_occupied.push_back(s+1);
+              c_occupied.push_back(c+1);
+            }
+            //add água *lateral*
+            r_occupied.push_back(s);
             c_occupied.push_back(c+1);
-          }
-          else if(s == ships[k]+r){   //achou o fim
-            r_occupied.push_back(s+1);
+            r_occupied.push_back(s);
             c_occupied.push_back(c-1);
-            r_occupied.push_back(s+1);
-            c_occupied.push_back(c);
-            r_occupied.push_back(s+1);
-            c_occupied.push_back(c+1);
           }
-          //add água *lateral*
-          r_occupied.push_back(s);
-          c_occupied.push_back(c+1);
-          r_occupied.push_back(s);
-          c_occupied.push_back(c-1);
         }
-      else if(rotation == 1)
-        for(int s = c; s <= (ships[k]+c); s++){
-          r_occupied.push_back(r);
-          c_occupied.push_back(s);
-          board[s][r] = 1;
-          //add água *lateral*
-          r_occupied.push_back(r+1);
-          c_occupied.push_back(s);
-          r_occupied.push_back(r-1);
-          c_occupied.push_back(s);
-        }
+        else if(rotation == 1)
+          for(int s = c; s < (ships[k]+c); s++){
+            r_occupied.push_back(r);
+            c_occupied.push_back(s);
+            board[s][r] = 1;
+            //add água *pontas*
+            if(s == c){   //achou o começo 
+              c_occupied.push_back(s-1);
+              r_occupied.push_back(r-1);
+              c_occupied.push_back(s-1);
+              r_occupied.push_back(r);
+              c_occupied.push_back(s-1);
+              r_occupied.push_back(r+1);
+            }
+            else if(s == ships[k]+r){   //achou o fim
+              c_occupied.push_back(s+1);
+              r_occupied.push_back(r-1);
+              c_occupied.push_back(s+1);
+              r_occupied.push_back(r);
+              c_occupied.push_back(s+1);
+              r_occupied.push_back(r+1);
+            }
+            //add água *lateral*
+            r_occupied.push_back(r+1);
+            c_occupied.push_back(s);
+            r_occupied.push_back(r-1);
+            c_occupied.push_back(s);
+          }
+      } else {  //submarinos
+        board[c][r] = 1;
+        r_occupied.push_back(r);
+        c_occupied.push_back(c);
+      }
+        
       cout << "k = " << k << endl << endl;
     }
     
