@@ -3,7 +3,7 @@ using namespace std;
 class Map{
 public:
 
-  vector <vector<int>> board;
+  vector <vector<char>> board;
   vector <int> r_occupied;
   vector <int> c_occupied;
   Map(int rows, int collums){
@@ -17,11 +17,11 @@ public:
   */
     //valor de cada ship[x] será o tamanho da embarcação x
     vector <int> ships = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
-    vector <int> line;  //inicicializador de "board"
+    vector <char> line;  //inicicializador de "board"
     
     //inicializa "board"
     for(int k = 0; k <= collums; k++)
-      line.push_back(0);
+      line.push_back('.');
     for(int k = 0; k <= rows; k++)
       board.push_back(line);
     
@@ -35,15 +35,18 @@ public:
       
       //conferir posições ocupadas
       if(k != 0)  //pra evitar de pegar 'occupied' vazio
-        for (int w = 0; w < r_occupied.size(); w++){
-          //cout << "entrou no loop" << endl;
-          if (r == r_occupied[w] && c == c_occupied[w]){
-              //cout << "posição repetida" << endl;
-              r = rand() % (rows - ships[k]);
-              c = rand() % (collums - ships[k]);
-              w = 0;
-          }
-        }
+        for (int w = 0; w < r_occupied.size(); w++)
+          for(int ship_it = 0; ship_it < ships[k]; ship_it++)
+            if (r == r_occupied[w] && c == c_occupied[w]){
+                r = rand() % (rows - ships[k]);
+                c = rand() % (collums - ships[k]);
+                w = 0;
+            } else if((r+ship_it) == r_occupied[w] && (c+ship_it) == c_occupied[w]){
+                r = rand() % (rows - ships[k]);
+                c = rand() % (collums - ships[k]);
+                w = 0;
+            }
+
       //add position so dos ships e exporta pra algum lugar pra criar
           //  armada e evitar mapas repetidos 
       cout << "ships[k] = " << ships[k] << endl;
