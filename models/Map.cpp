@@ -1,5 +1,6 @@
 using namespace std;
 // usar .board (ou .map) e .armada
+
 class Map{
 public:
 
@@ -26,33 +27,40 @@ public:
       board.push_back(line);    
     
     // Posicionar o Battleship
-    srand(time(NULL));
     for(int k = 0; k < ships.size(); k++){
-      int r = rand() % (rows - 1 - ships[k]);
-      int c = rand() % (collums - 1 - ships[k]);
+      int *ship = &ships[k]; // ponteiro
+      int r = position(rows, *ship);
+      int c = position(collums, *ship);
       bool rotation = rand() % 2;
       
+      //debug board
+      for(int w = 0; w < board.size(); w++){
+        cout << w << "[ ";
+        for(int j = 0; j < board[w].size(); j++)
+          cout << board[w][j];
+          cout << " ]" << endl;
+      }
       //conferir posições ocupadas
       if(k != 0)  //pra evitar de pegar 'occupied' vazio
         for (int w = 0; w < r_occupied.size(); w++)
           for(int ship_it = 0; ship_it < ships[k]; ship_it++)
             if (r == r_occupied[w] && c == c_occupied[w]){
-              r = rand() % (rows - ships[k]);
-              c = rand() % (collums - ships[k]);
+              r = position(rows, *ship);
+              c = position(collums, *ship);
               w = 0;
             }else 
               switch(rotation){
                 case 0:
                   if((r+ship_it) == r_occupied[w] && c == c_occupied[w]){
-                    r = rand() % (rows - ships[k]);
-                    c = rand() % (collums - ships[k]);
+                    r = position(rows, *ship);
+                    c = position(collums, *ship);
                     w = 0;
                   }
                   break;
                 case 1:
                   if(r == r_occupied[w] && (c+ship_it) == c_occupied[w]){
-                    r = rand() % (rows - ships[k]);
-                    c = rand() % (collums - ships[k]);
+                    r = position(rows, *ship);
+                    c = position(collums, *ship);
                     w = 0;
                   }
                   break;
@@ -60,8 +68,6 @@ public:
                   cout << "thats a bug\n\n";
                   break;
               }
-
-
 
       //add position so dos ships e exporta pra algum lugar pra criar
           //  armada e evitar mapas repetidos 
@@ -134,7 +140,7 @@ public:
             r_occupied.push_back(r-1);
             c_occupied.push_back(s);
           }
-      } else {  //submarinos
+      } else if(ships[k] == 1){  //submarinos
         for(int j = c-1; j <= c+1; j++)
           for(int w = r-1; w <= r+1; w++)
             if(j <= board.size() || j > 0)
