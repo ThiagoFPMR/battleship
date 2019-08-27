@@ -24,10 +24,18 @@ int main(/*int argc, char *argv[] */){
     matBool.push_back(new Map(rows, collums));
     cout << "\n\n";
     
+    //print indice top
+    cout << "    ";
+    for(int w = 0; w < matBool[k]->board.size(); w++)
+      cout << w << "  ";
+    cout << endl;
+
+    //print map
     for(int w = 0; w < matBool[k]->board.size(); w++){
-      for(int j = 1; j < matBool[k]->board[w].size(); j++)
+      cout << w << "[ ";
+      for(int j = 0; j < matBool[k]->board[w].size(); j++)
         cout << matBool[k]->board[w][j];
-      cout << endl;
+      cout << " ]" << endl;
     }
     //matBool[k]->print_debug();
   }

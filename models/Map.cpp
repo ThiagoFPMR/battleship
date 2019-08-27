@@ -21,10 +21,9 @@ public:
     
     //inicializa "board"
     for(int k = 0; k <= collums; k++)
-      line.push_back(".");
+      line.push_back(" . ");
     for(int k = 0; k <= rows; k++)
-      board.push_back(line);
-    
+      board.push_back(line);    
     
     // Posicionar o Battleship
     srand(time(NULL));
@@ -59,8 +58,7 @@ public:
             //add barco
             r_occupied.push_back(s);
             c_occupied.push_back(c);
-            board[c][s] = "●";
-            
+            board[c][s] = " ◼︎ ";
             //add água *pontas*
             //reaproveitar pra definir visual
             if(s == r){   //achou o começo 
@@ -70,14 +68,17 @@ public:
               c_occupied.push_back(c);
               r_occupied.push_back(s-1);
               c_occupied.push_back(c+1);
+              board[c][s] = " ◀︎ ";
+              
             }
-            else if(s == ships[k]+r){   //achou o fim
+            else if(s == ships[k]+(r-1)){   //achou o fim
               r_occupied.push_back(s+1);
               c_occupied.push_back(c-1);
               r_occupied.push_back(s+1);
               c_occupied.push_back(c);
               r_occupied.push_back(s+1);
               c_occupied.push_back(c+1);
+              board[c][s] = " ▶︎︎ ";
             }
             //add água *lateral*
             r_occupied.push_back(s);
@@ -90,7 +91,7 @@ public:
           for(int s = c; s < (ships[k]+c); s++){
             r_occupied.push_back(r);
             c_occupied.push_back(s);
-            board[s][r] = 1;
+            board[s][r] = " ◼︎ ";
             //add água *pontas*
             if(s == c){   //achou o começo 
               c_occupied.push_back(s-1);
@@ -99,14 +100,16 @@ public:
               r_occupied.push_back(r);
               c_occupied.push_back(s-1);
               r_occupied.push_back(r+1);
+              board[s][r] = " ▲ ";
             }
-            else if(s == ships[k]+r){   //achou o fim
+            else if(s == ships[k]+(c-1)){   //achou o fim
               c_occupied.push_back(s+1);
               r_occupied.push_back(r-1);
               c_occupied.push_back(s+1);
               r_occupied.push_back(r);
               c_occupied.push_back(s+1);
               r_occupied.push_back(r+1);
+              board[s][r] = " ▼ ";
             }
             //add água *lateral*
             r_occupied.push_back(r+1);
@@ -115,16 +118,20 @@ public:
             c_occupied.push_back(s);
           }
       } else {  //submarinos
-        board[c][r] = "●";
-        r_occupied.push_back(r);
-        c_occupied.push_back(c);
+        for(int j = c-1; j <= c+1; j++)
+          for(int w = r-1; w <= r+1; w++)
+            if(j <= board.size() || j > 0)
+              if(w <= board[j].size() || w > 0){
+                r_occupied.push_back(w);
+                c_occupied.push_back(j);
+              }
+
+        board[c][r] = " ● ";
       }
         
       cout << "k = " << k << endl << endl;
     }
     
-
-
     // Definir Direção
     //int directions[2] = {'H', 'V'};
     //int direction = directions[rand() % 2];
