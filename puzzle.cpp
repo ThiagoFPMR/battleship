@@ -29,8 +29,8 @@ int main(/*int argc, char *argv[] */){
   //arguemntos na ordem
   quantity = 1;//atoi(argv[0]);
   //linhas e colunas tem q ser -1 do input real
-  rows = 7;//atoi(argv[1]);
-  collums = 7;//atoi(argv[2]);
+  rows = 10;//atoi(argv[1]);
+  collums = 10;//atoi(argv[2]);
 
   cout << "compilou essa desgraça!!" << endl;
   cout << quantity << endl;

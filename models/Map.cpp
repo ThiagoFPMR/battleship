@@ -5,8 +5,8 @@ class Map{
 public:
 
   vector <vector<string>> board;
-  vector <int> r_occupied;
-  vector <int> c_occupied;
+  vector <int> r_occupied = {-1};
+  vector <int> c_occupied = {-1};
   Map(int rows, int collums){
   /* Plano de Ataque:
       1. Decidir o tipo de barco a ser posicionado
@@ -34,12 +34,12 @@ public:
       bool rotation = rand() % 2;
       
       //debug board
-      for(int w = 0; w < board.size(); w++){
+      /*for(int w = 0; w < board.size(); w++){
         cout << w << "[ ";
         for(int j = 0; j < board[w].size(); j++)
           cout << board[w][j];
           cout << " ]" << endl;
-      }
+      } */
       //conferir posições ocupadas
       if(k != 0)  //pra evitar de pegar 'occupied' vazio
         for (int w = 0; w < r_occupied.size(); w++)

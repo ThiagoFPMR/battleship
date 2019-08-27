@@ -4,7 +4,7 @@ int position(int direction, int ship){
     
     int result;
     
-    result = rand() % (direction - (ship-1));  //compile again with changes
+    result = rand() % (direction - (ship-1));
     
     return result;
 }
