@@ -37,14 +37,31 @@ public:
         for (int w = 0; w < r_occupied.size(); w++)
           for(int ship_it = 0; ship_it < ships[k]; ship_it++)
             if (r == r_occupied[w] && c == c_occupied[w]){
-                r = rand() % (rows - ships[k]);
-                c = rand() % (collums - ships[k]);
-                w = 0;
-            } else if((r+ship_it) == r_occupied[w] && (c+ship_it) == c_occupied[w]){
-                r = rand() % (rows - ships[k]);
-                c = rand() % (collums - ships[k]);
-                w = 0;
-            }
+              r = rand() % (rows - ships[k]);
+              c = rand() % (collums - ships[k]);
+              w = 0;
+            }else 
+              switch(rotation){
+                case 0:
+                  if((r+ship_it) == r_occupied[w] && c == c_occupied[w]){
+                    r = rand() % (rows - ships[k]);
+                    c = rand() % (collums - ships[k]);
+                    w = 0;
+                  }
+                  break;
+                case 1:
+                  if(r == r_occupied[w] && (c+ship_it) == c_occupied[w]){
+                    r = rand() % (rows - ships[k]);
+                    c = rand() % (collums - ships[k]);
+                    w = 0;
+                  }
+                  break;
+                defalt:
+                  cout << "thats a bug\n\n";
+                  break;
+              }
+
+
 
       //add position so dos ships e exporta pra algum lugar pra criar
           //  armada e evitar mapas repetidos 
