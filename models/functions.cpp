@@ -1,12 +1,11 @@
-#include <iostream>
-#include <string>
+using namespace std;
 
-void error_msg(std::string error = ""){
+void error_msg(string error = ""){
 
     if (error != "")
-        std::cout << "Erro: " << error << "\n\n";
+        cout << "Error: " << error << "\n\n";
 
-    std::cout <<
+    cout <<
     "Usage: [<options>] <number_of_puzzles>\n" <<
     "Program options are:\n" <<
     "--Row <num>    Specify the number of rows for the matrix, with '<num>' in the range [7, 16]. The deafult value is 10.\n" <<
@@ -18,10 +17,20 @@ void error_msg(std::string error = ""){
     
 }
 
-std::string str_tolower(std::string str){
+string str_tolower(string str){
 
     for (char & c : str)
-        c = std::tolower(c);
+        c = tolower(c);
 
     return str;
+}
+
+int position(int direction, int ship){
+    srand(time(NULL));
+    
+    int result;
+    
+    result = rand() % (direction - (ship-1));
+    
+    return result;
 }

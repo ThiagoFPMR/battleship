@@ -6,7 +6,6 @@
 #include <algorithm>
 #include <stdexcept>
 
-#include "./models/position.cpp"
 #include "./models/Map.cpp"
 #include "./models/functions.cpp"
 
@@ -21,18 +20,6 @@
 #define STD_ROW 10
 #define STD_NPUZZLE MIN_NPUZZLE
 
-// Objetivos:
-// 1. Fazer o criador de navios, que gera o documento no formato da armada.png aleatoriamente a partir do valor de rows e collums e fornece as posição para 2
-// 2. Fazer o gerador de matrizes com base nas posiçẽos geradas pelo 1 e no tamanho especificado
-// 3. Fazer a função ler quantity rows e collums a partir da chamada pelo terminal (olhar slack)
-
-//to to
-    //salvar board em arquivo
-    //gerar armada
-    //salvar armada em disco
-    //refatoras
-
-    //otimizar 'position' empurrando barcos pra evitar colisão 
 
 using namespace std;
 int main(int argc, char *argv[]){
@@ -109,11 +96,10 @@ int main(int argc, char *argv[]){
 
   vector <Map*> matBool; 
 
-  //arguemntos na ordem
-  //quantity = 1;//atoi(argv[0]);
-  //linhas e colunas tem q ser -1 do input real
-  //rows = 10;//atoi(argv[1]);
-  //collums = 10;//atoi(argv[2]);
+  //argumentos na ordem
+  //quantity = 1;
+  //rows = 10;
+  //collums = 10;
 
   cout << "compilou essa desgraça!!" << endl;
   cout << quantity << endl;
@@ -137,8 +123,6 @@ int main(int argc, char *argv[]){
     //matBool[k]->print_debug();
   }
 
-  //fazer o front
+  
   return 0;
 }
-
-// OBS: Se o tamanho fornecido resultar em uma matriz cmenor que 6x7 sinalizar que o input foi incorreto

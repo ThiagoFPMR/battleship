@@ -3,7 +3,7 @@ using namespace std;
 
 class Map{
 public:
-
+  std::string armada = "";
   vector <vector<string>> board;
   vector <int> r_occupied = {-1};
   vector <int> c_occupied = {-1};
@@ -32,6 +32,22 @@ public:
       int r = position(rows, *ship);
       int c = position(collums, *ship);
       bool rotation = rand() % 2;
+
+      switch(*ship){
+        case 4:
+          armada.push_back('B');
+          break;
+        case 3:
+          armada.push_back('D');
+          break;
+        case 2:
+          armada.push_back('C');
+          break;
+        case 1:
+          armada.push_back('S');
+          break;
+      }
+
       
       //debug board
       /*for(int w = 0; w < board.size(); w++){
@@ -68,6 +84,20 @@ public:
                   cout << "thats a bug\n\n";
                   break;
               }
+
+      armada.push_back(r);
+      armada.push_back(c);
+
+      switch(rotation){
+        case 0:
+          armada.push_back('V');
+          break;
+        case 1:
+          armada.push_back('H');
+          break;
+      }
+
+      armada.push_back('\n');
 
       //add position so dos ships e exporta pra algum lugar pra criar
           //  armada e evitar mapas repetidos 
