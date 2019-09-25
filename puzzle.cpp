@@ -7,8 +7,8 @@
 #include <algorithm>
 #include <stdexcept>
 
-#include "./models/Map.cpp"
 #include "./models/functions.cpp"
+#include "./models/Map.cpp"
 
 #define MIN_COL 7
 #define MAX_COL 16
