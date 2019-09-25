@@ -1,3 +1,4 @@
+
 using namespace std;
 // usar .board (ou .map) e .armada
 

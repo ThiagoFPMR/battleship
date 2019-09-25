@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <cctype>
+#include <time.h>
 #include <algorithm>
 #include <stdexcept>
 
