@@ -22,10 +22,18 @@
 #define STD_NPUZZLE MIN_NPUZZLE
 
 
+// Nota: funcionando corretamente com tabelas
+  //  entre 10x10 e 99x99
 using namespace std;
 int main(int argc, char *argv[]){
   
   int quantity{STD_NPUZZLE}, rows{STD_ROW}, collums{STD_COL}; // Valores Padrão
+  vector <Map*> matBool;  // Matriz pra guardar os mapas
+  ofstream matrix;  
+  ofstream armada;
+
+  cout << "running... building " << endl;
+  cout << quantity << " maps" << endl;
 
   // Apenas nome do progrma (sem argumentos)
   if (argc == 1)
@@ -95,35 +103,53 @@ int main(int argc, char *argv[]){
   }
 
 
-  vector <Map*> matBool; 
+  matrix.open("../output/matrix.txt");
+  armada.open("../output/armada.txt");
+  matrix << quantity << endl << rows << " " << collums;
+  matrix << endl;
 
-  //argumentos na ordem
-  //quantity = 1;
-  //rows = 10;
-  //collums = 10;
-
-  cout << "compilou essa desgraça!!" << endl;
-  cout << quantity << endl;
   for(int k = 0; k < quantity; k++){
     matBool.push_back(new Map(rows, collums));
-    cout << "\n\n";
+    matrix << "\n\n";
     
     //print indice top
-    cout << "    ";
-    for(int w = 0; w < matBool[k]->board.size(); w++)
-      cout << w << "  ";
-    cout << endl;
+    for(int dois = 0; dois < 2; dois++){
+      matrix << "    ";
+      if(rows >= 10)
+        matrix << " ";
+      if(rows >= 100)
+        matrix << " ";
+      for(int w = 0; w < matBool[k]->board.size(); w++){
+        if(dois == 0)
+          if(w >= 10)
+            matrix << w/10 << "  ";
+          else      
+            matrix << "   ";
+        else if(dois == 1)
+          if(w >= 10)
+            matrix << w/10%1 << "  ";
+          else      
+            matrix << w << "  ";
+      }
+      matrix << endl;
+    }
 
     //print map
     for(int w = 0; w < matBool[k]->board.size(); w++){
-      cout << w << "[ ";
+      if(w < 10 && rows >= 10)
+        matrix << " ";
+      if(w < 100 && rows >= 100)
+        matrix << " ";
+      matrix << w << "[ ";
       for(int j = 0; j < matBool[k]->board[w].size(); j++)
-        cout << matBool[k]->board[w][j];
-      cout << " ]" << endl;
+        matrix << matBool[k]->board[w][j];
+      matrix << " ]" << endl;
     }
     //matBool[k]->print_debug();
   }
-
   
+  matrix.close();
+  armada.close();
+
   return 0;
 }

@@ -102,7 +102,7 @@ public:
 
       //add position so dos ships e exporta pra algum lugar pra criar
           //  armada e evitar mapas repetidos 
-      cout << "ships[k] = " << ships[k] << endl;
+      cout << "loading boat " << k <<  endl;
 
       // seperar "rotation" do resto deve cortar o tamanho da estrutura pela metade
       
@@ -182,8 +182,6 @@ public:
 
         board[c][r] = " ● ";
       }
-        
-      cout << "k = " << k << endl << endl;
     }
     
     // Definir Direção
