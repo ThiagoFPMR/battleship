@@ -34,6 +34,7 @@ public:
       int c = position(collums, *ship);
       bool rotation = rand() % 2;
 
+      armada.push_back(*ship);
       switch(*ship){
         case 4:
           armada.push_back('B');
@@ -86,8 +87,11 @@ public:
                   break;
               }
 
-      armada.push_back(r);
-      armada.push_back(c);
+      char test1 = char(r);
+      char test2 = (char)c;
+      armada.push_back((char) r);
+      armada.push_back((char) c);
+      //cout << "  -----   " << test1 << "  /  " << test2 << endl;
 
       switch(rotation){
         case 0:
@@ -98,7 +102,7 @@ public:
           break;
       }
 
-      armada.push_back('\n');
+      //armada.push_back('\n');
 
       //add position so dos ships e exporta pra algum lugar pra criar
           //  armada e evitar mapas repetidos 

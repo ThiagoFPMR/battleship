@@ -109,6 +109,7 @@ int main(int argc, char *argv[]){
   matrix << endl;
 
   for(int k = 0; k < quantity; k++){
+    cout << "Building map " << k+1 << " ..." << endl;
     matBool.push_back(new Map(rows, collums));
     matrix << "\n\n";
     
@@ -138,12 +139,13 @@ int main(int argc, char *argv[]){
     for(int w = 0; w < matBool[k]->board.size(); w++){
       if(w < 10 && rows >= 10)
         matrix << " ";
-      if(w < 100 && rows >= 100)
-        matrix << " ";
       matrix << w << "[ ";
       for(int j = 0; j < matBool[k]->board[w].size(); j++)
         matrix << matBool[k]->board[w][j];
       matrix << " ]" << endl;
+    }
+    for(int w = 1; w <= matBool[k]->armada.size(); w++){
+      armada << matBool[k]->armada[w];
     }
     //matBool[k]->print_debug();
   }
