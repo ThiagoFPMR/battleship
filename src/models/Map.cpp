@@ -1,4 +1,8 @@
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <sstream>
+
 using namespace std;
 // usar .board (ou .map) e .armada
 
@@ -20,6 +24,7 @@ public:
     //valor de cada ship[x] será o tamanho da embarcação x
     vector <int> ships = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
     vector <string> line;  //inicicializador de "board"
+    std::ostringstream OSS;
     
     //inicializa "board"
     for(int k = 0; k <= collums; k++)
@@ -34,19 +39,18 @@ public:
       int c = position(collums, *ship);
       bool rotation = rand() % 2;
 
-      armada.push_back(*ship);
       switch(*ship){
         case 4:
-          armada.push_back('B');
+          OSS << 'B';
           break;
         case 3:
-          armada.push_back('D');
+          OSS << 'D';
           break;
         case 2:
-          armada.push_back('C');
+          OSS << 'C';
           break;
         case 1:
-          armada.push_back('S');
+          OSS << 'S';
           break;
       }
 
@@ -86,21 +90,6 @@ public:
                   cout << "thats a bug\n\n";
                   break;
               }
-
-      char test1 = char(r);
-      char test2 = (char)c;
-      armada.push_back((char) r);
-      armada.push_back((char) c);
-      //cout << "  -----   " << test1 << "  /  " << test2 << endl;
-
-      switch(rotation){
-        case 0:
-          armada.push_back('V');
-          break;
-        case 1:
-          armada.push_back('H');
-          break;
-      }
 
       //armada.push_back('\n');
 
@@ -186,7 +175,21 @@ public:
 
         board[c][r] = " ● ";
       }
+      OSS << " " << r;
+      OSS << " " << c;
+      if( *ship > 1)
+        switch(rotation){
+          case 0:
+            OSS << 'V';
+            break;
+          case 1:
+            OSS << 'H';
+            break;
+        }
+      OSS << "\n";
     }
+    OSS << "\n";
+    armada+= OSS.str();
     
     // Definir Direção
     //int directions[2] = {'H', 'V'};

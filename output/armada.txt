@@ -1,0 +1,46 @@
+B 2 2V
+D 3 7V
+D 7 7V
+C 4 4V
+C 0 0H
+C 5 0V
+S 5 9
+S 9 9
+S 9 5
+S 2 0
+
+B 2 2V
+D 3 7V
+D 7 7V
+C 4 4V
+C 0 0H
+C 5 0V
+S 5 9
+S 9 9
+S 9 5
+S 2 0
+
+
+B 3 3V
+D 6 6V
+D 1 1H
+C 4 0H
+C 3 7H
+C 5 8H
+S 8 8
+S 8 0
+S 8 4
+S 1 6
+
+B 3 3V
+D 6 6V
+D 1 1H
+C 4 0H
+C 3 7H
+C 5 8H
+S 8 8
+S 8 0
+S 8 4
+S 1 6
+
+

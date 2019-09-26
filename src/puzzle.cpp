@@ -1,6 +1,7 @@
 #include <iostream>
-#include <vector>
 #include <string>
+
+#include <vector>
 #include <fstream>
 #include <cctype>
 #include <time.h>
@@ -144,9 +145,7 @@ int main(int argc, char *argv[]){
         matrix << matBool[k]->board[w][j];
       matrix << " ]" << endl;
     }
-    for(int w = 1; w <= matBool[k]->armada.size(); w++){
-      armada << matBool[k]->armada[w];
-    }
+    armada << matBool[k]->armada;
     //matBool[k]->print_debug();
   }
   
