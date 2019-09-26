@@ -4,7 +4,7 @@ using namespace std;
 
 class Map{
 public:
-  std::string armada = "";
+  vector <string> armada;
   vector <vector<string>> board;
   vector <int> r_occupied = {-1};
   vector <int> c_occupied = {-1};
@@ -36,16 +36,16 @@ public:
 
       switch(*ship){
         case 4:
-          armada.push_back('B');
+          armada[k].push_back('B');
           break;
         case 3:
-          armada.push_back('D');
+          armada[k].push_back('D');
           break;
         case 2:
-          armada.push_back('C');
+          armada[k].push_back('C');
           break;
         case 1:
-          armada.push_back('S');
+          armada[k].push_back('S');
           break;
       }
 
@@ -86,19 +86,19 @@ public:
                   break;
               }
 
-      armada.push_back(r);
-      armada.push_back(c);
+      armada[k].push_back(r);
+      armada[k].push_back(c);
 
       switch(rotation){
         case 0:
-          armada.push_back('V');
+          armada[k].push_back('V');
           break;
         case 1:
-          armada.push_back('H');
+          armada[k].push_back('H');
           break;
       }
 
-      armada.push_back('\n');
+      armada[k].push_back('\n');
 
       //add position so dos ships e exporta pra algum lugar pra criar
           //  armada e evitar mapas repetidos 
