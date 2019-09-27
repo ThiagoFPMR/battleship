@@ -25,6 +25,7 @@ public:
     vector <int> ships = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
     vector <string> line;  //inicicializador de "board"
     std::ostringstream OSS;
+    bool key = false;
     
     //inicializa "board"
     for(int k = 0; k <= collums; k++)
@@ -63,9 +64,10 @@ public:
           cout << " ]" << endl;
       } */
       //conferir posições ocupadas
+
       if(k != 0)  //pra evitar de pegar 'occupied' vazio
         for (int w = 0; w < r_occupied.size(); w++)
-          for(int ship_it = 0; ship_it < ships[k]; ship_it++)
+          for(int ship_it = 0; ship_it < ships[k]; ship_it++){
             if (r == r_occupied[w] && c == c_occupied[w]){
               r = position(rows, *ship);
               c = position(collums, *ship);
@@ -74,23 +76,38 @@ public:
               switch(rotation){
                 case 0:
                   if((r+ship_it) == r_occupied[w] && c == c_occupied[w]){
-                    r = position(rows, *ship);
-                    c = position(collums, *ship);
-                    w = 0;
+                    if(key){
+                      r = position(rows, *ship);
+                      c = position(collums, *ship);
+                      w = 0;
+                      key = false;
+                    }else {
+                      rotation = 1;
+                      key = true;
+                      w = 0;
+                    }
                   }
                   break;
                 case 1:
                   if(r == r_occupied[w] && (c+ship_it) == c_occupied[w]){
-                    r = position(rows, *ship);
-                    c = position(collums, *ship);
-                    w = 0;
+                    if(key){
+                      r = position(rows, *ship);
+                      c = position(collums, *ship);
+                      w = 0;
+                      key = false;
+                    }else {
+                      rotation = 0;
+                      key = true;
+                      w = 0;
+                    }
                   }
                   break;
                 defalt:
                   cout << "thats a bug\n\n";
                   break;
               }
-
+            key = false;
+          }
       //armada.push_back('\n');
 
       //add position so dos ships e exporta pra algum lugar pra criar
