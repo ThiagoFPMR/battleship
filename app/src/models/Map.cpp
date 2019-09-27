@@ -8,7 +8,7 @@ using namespace std;
 
 class Map{
 public:
-  std::string armada = "";
+  vector <string> armada;
   vector <vector<string>> board;
   vector <int> r_occupied = {-1};
   vector <int> c_occupied = {-1};
