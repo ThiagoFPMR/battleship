@@ -1,7 +1,12 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 
+#include "../include/board.h"
 #include "../include/functions.h"
+#include "../include/builder.h"
+
+using namespace std;
 
 int main(int argc, char * argv[]) {
     /*Definimos a quantidade de matrizes, linhas e colunas abaixo e atribuimos
@@ -10,12 +15,7 @@ int main(int argc, char * argv[]) {
     receiveInput(argc, argv, &quantity, &rows, &collums);
     
     // Alocando dinâmicamente o vetor de matrizes
-    int * boardList;
-    boardList = (int*) malloc(sizeof(int**) * quantity);
-
-    for (int i = 0; i < quantity; i++) {
-        
-    }
+    vector <Board> boardList;
 
     return 0;
 }

@@ -1,5 +1,5 @@
 
-#include "../include/functions.h"
+#include "../include/receiveInput.h"
 
 using namespace std;
 
