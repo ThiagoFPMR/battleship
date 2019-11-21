@@ -42,7 +42,53 @@ void setBoat (Board map, int boatSize) {
     }
     else {
         // Adicionando o barco à armada
-        // Adicionando o barco à matriz
+
+        /* Adicionando o barco à matriz */
+
+        if (direction == 0) { // Se for horizontal
+            // Posiciona o barco
+            for (int n = collum; n < collum + boatSize; n++)
+                map.matrix[row][n] = "◼︎";
+            // Ocupa posições acima do barco
+            if (row > 0)
+                for (int n = collum; n < collum + boatSize; n++)
+                    map.matrix[row - 1][n] = "*";
+            // Ocupa posições abaixo do barco
+            if (row < map.rows() - 1)
+                for (int n = collum; n < collum + boatSize; n++)
+                    map.matrix[row + 1][n] = "*";
+            // Ocupa posição à direita e à esquerda (e diagonais)
+            if (collum > 0)
+            {
+                map.matrix[row][collum - 1] = "*";
+                if (row > 0)
+                    map.matrix[row - 1][collum - 1] = "*";
+                if (row < map.rows() - 1)
+                    map.matrix[row + boatSize][collum - 1] = "*";
+            }
+            if (collum < map.collums() - 1)
+            {
+                map.matrix[row][collum + boatSize] = "*";
+                if (row > 0)
+                    map.matrix[row - 1][collum + boatSize] = "*";
+                if (row < map.rows() - 1)
+                    map.matrix[row + boatSize][collum + boatSize] = "*";
+            }
+        }
+        if (direction == 1) { // Se for vertical
+            // Posiciona o barco
+            for (int m = row; m < row + boatSize; m++)
+                map.matrix[m][collum] = "◼︎";
+            // Ocupa à esqueda do barco
+            for (int m = row - 1; m <= row + boatSize; m++)
+                map.matrix[m][collum - 1] = "*";
+            // Ocupa posições abaixo do barco
+            for (int m = row - 1; m <= row + boatSize; m++)
+                map.matrix[m][collum + 1] = "*";
+            // Ocupa posição à direita e à esquerda
+            map.matrix[row - 1][collum] = "*";
+            map.matrix[row + boatSize][collum] = "*";
+        }
     }
 }
 
