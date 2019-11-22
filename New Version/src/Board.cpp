@@ -1,5 +1,5 @@
 
-#include "../include/board.h"
+#include "../include/Board.h"
 
 int Board::collums() {
     return colunas;

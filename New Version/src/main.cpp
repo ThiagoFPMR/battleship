@@ -2,8 +2,8 @@
 #include <fstream>
 #include <vector>
 
-#include "../include/board.h"
-#include "../include/functions.h"
+#include "../include/Board.h"
+#include "../include/receiveInput.h"
 #include "../include/builder.h"
 
 using namespace std;

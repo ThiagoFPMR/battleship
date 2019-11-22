@@ -13,7 +13,7 @@
 #define STD_ROW 10
 #define STD_COL 10
 
-#include "board.h"
+#include "Board.h"
 
 #include <iostream>
 #include <string>

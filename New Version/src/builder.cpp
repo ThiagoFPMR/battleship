@@ -1,4 +1,3 @@
-
 #include "../include/builder.h"
 
 using namespace std;
@@ -6,6 +5,15 @@ using namespace std;
 void boardBuilder (Board map, int rows, int collums) {
     vector <int> boats = {1, 1, 1, 1, 2, 2, 2, 3, 3, 4};
     Board map(rows, collums);
+    std::ostringstream OSS;
+
+
+
+    OSS << "Linhas: " << rows 
+        << "Colunas: " << collums 
+        << "\n\n";
+
+    map.fleet+= OSS.str();
 
     //Inicializa a matriz
     setup(map);
@@ -42,6 +50,13 @@ void setBoat (Board map, int boatSize) {
     }
     else {
         // Adicionando o barco à armada
+        std::ostringstream OSS;
+
+        OSS << boatSize << " "
+            << row      << " " 
+            << collum   << " " 
+            << direction << "\n";
+        map.fleet+= OSS.str();
 
         /* Adicionando o barco à matriz */
 
