@@ -3,9 +3,9 @@
 
 using namespace std;
 
-void errorMsg(string error = "")
+void errorMsg(string error)
 {
-
+    error = "";
     if (error != "")
         cout << "Error: " << error << "\n\n";
 

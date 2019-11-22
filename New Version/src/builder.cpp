@@ -7,6 +7,7 @@ void boardBuilder (Board map, int rows, int collums) {
     Board map(rows, collums);
     std::ostringstream OSS;
 
+
     //top da armada
     OSS << "Linhas: " << rows 
         << "Colunas: " << collums 
@@ -19,7 +20,7 @@ void boardBuilder (Board map, int rows, int collums) {
 
     for (int i = boats.back(); i >= 0; i++) {
         unsigned short int* boat = &boats[i];
-        setBoat(map, *boat);
+        setBoat(map, boat);
         boats.pop_back();
     }
     /*Lembrar para quando for implementar o resto:
@@ -35,7 +36,7 @@ void setup (Board map) {
             map.matrix[m][n] = ".";
 }
 
-void setBoat (Board map, unsigned short int *boatSize) {
+void setBoat (Board map, unsigned short int* boatSize) {
     random_device r_col, r_row, r_direction;
     /* Começa definindo 3 números aleatorios acima,
      os quais usados como base para obter a posição
@@ -45,8 +46,8 @@ void setBoat (Board map, unsigned short int *boatSize) {
     int direction = r_direction() % 2;
     // 0 -> Horizontal | 1 -> Vertical
 
-    if (!(canPlaceBoat(map, row, collum, direction, *boatSize))) {
-        setBoat(map, *boatSize);
+    if (!(canPlaceBoat(map, row, collum, direction, boatSize))) {
+        setBoat(map, boatSize);
     }
     else {
         // Adicionando o barco à armada
