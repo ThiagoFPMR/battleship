@@ -11,12 +11,17 @@ using namespace std;
 int main(int argc, char * argv[]) {
     /*Definimos a quantidade de matrizes, linhas e colunas abaixo e atribuimos
      valores a elas a partir da função receiveInput(), que processa a entrada.*/
-    int quantity{STD_NPUZ}, rows{STD_ROW}, collums{STD_COL};
+    int quantity{STD_NPUZ}, 
+        rows{STD_ROW},
+        collums{STD_COL};
     receiveInput(argc, argv, &quantity, &rows, &collums);
     
     // Alocando dinâmicamente o vetor de matrizes
-    vector <Board> boardList;
+    vector <Board*> boardList;
+    Board* map = new Board(rows, collums);
+    boardBuilder(*map, rows, collums);
+    boardList.push_back(map);
+    cout << boardList[0]->rows();
 
     return 0;
 }
-
