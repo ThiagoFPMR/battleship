@@ -35,6 +35,7 @@ int main(int argc, char * argv[]) {
         matrixFile << boardList[i].fleet << "\n\n";  //not done
     }
     fleetFile.close();
+    matrixFile.close();
 
     return 0;
 }
