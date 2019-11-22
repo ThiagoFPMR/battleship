@@ -17,11 +17,13 @@ int main(int argc, char * argv[]) {
     receiveInput(argc, argv, &quantity, &rows, &collums);
     
     // Alocando dinâmicamente o vetor de matrizes
-    vector <Board*> boardList;
-    Board* map = new Board(rows, collums);
-    boardBuilder(*map, rows, collums);
-    boardList.push_back(map);
-    cout << boardList[0]->rows();
+    vector <Board> boardList;
+    
+    for(int i = 1; i <= quantity; i++){
+
+        boardList.push_back(boardBuilder(rows, collums));
+        cout << boardList[0].rows();
+    }
 
     return 0;
 }

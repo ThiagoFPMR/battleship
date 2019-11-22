@@ -2,9 +2,9 @@
 
 using namespace std;
 
-void boardBuilder (Board map, int rows, int collums) {
+Board boardBuilder (int rows, int collums) {
     vector <unsigned short int> boats = {1, 1, 1, 1, 2, 2, 2, 3, 3, 4};
-    Board map(rows, collums);
+    Board map = Board (rows, collums);
     std::ostringstream OSS;
 
 
@@ -27,6 +27,8 @@ void boardBuilder (Board map, int rows, int collums) {
         vector::back
         vector::pop_back
     */
+
+   return map;
 
 }
 
