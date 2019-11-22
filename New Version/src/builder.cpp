@@ -37,7 +37,9 @@ void setup (Board map) {
         map.matrix.push_back({});
         for (int n = 0; n < map.collums(); n++){
             map.matrix[m].push_back('.');
+            cout << m << " " << n << " | ";
         }
+        cout << endl;
     }
 }
 
@@ -51,6 +53,7 @@ void setBoat (Board map, unsigned short int* boatSize) {
     int direction = r_direction() % 2;
     // 0 -> Horizontal | 1 -> Vertical
 
+    //seg fault next line
     if (!(canPlaceBoat(map, row, collum, direction, boatSize))) {
         setBoat(map, boatSize);
     }
@@ -139,9 +142,16 @@ bool canPlaceBoat (Board map, int row, int collum, int direction, unsigned short
             return false;
         if (!(collum < map.collums() && collum >= 0))
             return false;
-        for (int m = row; m < row + *boatSize; m++)
+
+        cout << " '\\'--------------------------------------------------'/' " << endl;
+        cout << "bSize: " << *boatSize << endl;
+
+        for (int m = row; m < (row + *boatSize)-1; m++){
+            cout << "its in once" << endl;
+        //problem next line!
             if (map.matrix[m][collum] != '.')
                 return false;
+        }
     }
     return true;
 }
