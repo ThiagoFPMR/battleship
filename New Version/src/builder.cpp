@@ -33,9 +33,12 @@ Board boardBuilder (int rows, int collums) {
 }
 
 void setup (Board map) {
-    for (int m = 0; m < map.rows(); m++)
-        for (int n = 0; n < map.collums(); n++)
-            map.matrix[m][n] = ".";
+    for (int m = 0; m < map.rows(); m++){
+        map.matrix.push_back({});
+        for (int n = 0; n < map.collums(); n++){
+            map.matrix[m].push_back('.');
+        }
+    }
 }
 
 void setBoat (Board map, unsigned short int* boatSize) {
@@ -66,55 +69,55 @@ void setBoat (Board map, unsigned short int* boatSize) {
         if (direction == 0) { // Se for horizontal
             // Posiciona o barco
             for (int n = collum; n < collum + *boatSize; n++)
-                map.matrix[row][n] = "◼︎";
+                map.matrix[row][n] = '◼︎';
             // Ocupa posições acima do barco
             if (row > 0)
                 for (int n = collum; n < collum + *boatSize; n++)
-                    map.matrix[row - 1][n] = "*";
+                    map.matrix[row - 1][n] = '*';
             // Ocupa posições abaixo do barco
             if (row < map.rows() - 1)
                 for (int n = collum; n < collum + *boatSize; n++)
-                    map.matrix[row + 1][n] = "*";
+                    map.matrix[row + 1][n] = '*';
             // Ocupa posições à direita e à esquerda (e diagonais)
             if (collum > 0) {
-                map.matrix[row][collum - 1] = "*";
+                map.matrix[row][collum - 1] = '*';
                 if (row > 0)
-                    map.matrix[row - 1][collum - 1] = "*";
+                    map.matrix[row - 1][collum - 1] = '*';
                 if (row < map.rows() - 1)
-                    map.matrix[row + 1][collum - 1] = "*";
+                    map.matrix[row + 1][collum - 1] = '*';
             }
             if (collum < map.collums() - *boatSize) {
-                map.matrix[row][collum + *boatSize] = "*";
+                map.matrix[row][collum + *boatSize] = '*';
                 if (row > 0)
-                    map.matrix[row - 1][collum + *boatSize] = "*";
+                    map.matrix[row - 1][collum + *boatSize] = '*';
                 if (row < map.rows() - 1)
-                    map.matrix[row + 1][collum + *boatSize] = "*";
+                    map.matrix[row + 1][collum + *boatSize] = '*';
             }
         }
         if (direction == 1) { // Se for vertical
             // Posiciona o barco
             for (int m = row; m < row + *boatSize; m++)
-                map.matrix[m][collum] = "◼︎";
+                map.matrix[m][collum] = '◼︎';
             // Ocupa poisções à esqueda do barco
             if (collum > 0)
                 for (int m = row; m < row + *boatSize; m++)
-                    map.matrix[m][collum - 1] = "*";
+                    map.matrix[m][collum - 1] = '*';
             // Ocupa posições à direita do barco
             if (collum < map.collums() - 1)
                 for (int m = row; m < row + *boatSize; m++)
-                    map.matrix[m][collum + 1] = "*";
+                    map.matrix[m][collum + 1] = '*';
             // Ocupa posições abaixo e acima (e diagonais)
             if (row > 0) { 
-                map.matrix[row - 1][collum] = "*";
+                map.matrix[row - 1][collum] = '*';
                 if (collum > 0)
-                    map.matrix[row - 1][collum - 1] = "*";
+                    map.matrix[row - 1][collum - 1] = '*';
                 if (collum < map.collums() - 1)
                     map.matrix[row - 1][collum + 1];
             }
             if (row < map.rows() - *boatSize)
-                map.matrix[row + *boatSize][collum] = "*";
+                map.matrix[row + *boatSize][collum] = '*';
                 if (collum > 0)
-                    map.matrix[row + *boatSize][collum - 1] = "*";
+                    map.matrix[row + *boatSize][collum - 1] = '*';
                 if (collum < map.collums() - 1)
                     map.matrix[row + *boatSize][collum + 1];
         }
@@ -128,7 +131,7 @@ bool canPlaceBoat (Board map, int row, int collum, int direction, unsigned short
         if (!(collum < map.collums() - *boatSize && collum >= 0))
             return false;
         for (int n = collum; n < collum + *boatSize; n++)
-            if (map.matrix[row][n] != ".")
+            if (map.matrix[row][n] != '.')
                 return false;
     }
     if (direction == 1) { // Se for vertical
@@ -137,7 +140,7 @@ bool canPlaceBoat (Board map, int row, int collum, int direction, unsigned short
         if (!(collum < map.collums() && collum >= 0))
             return false;
         for (int m = row; m < row + *boatSize; m++)
-            if (map.matrix[m][collum] != ".")
+            if (map.matrix[m][collum] != '.')
                 return false;
     }
     return true;
