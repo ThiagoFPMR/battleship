@@ -18,8 +18,16 @@ Board boardBuilder (int rows, int collums) {
     //Inicializa a matriz
     setup(&map);
 
-    for (int i = boats.back(); i >= 0; i++) {
+    for (int i = boats.back(); i >= 0; i--) {
         unsigned short int* boat = &boats[i];
+        cout << " i : " << i << endl;
+        cout << " &map  =     " << &map      << " ***** \n"
+             << " boat  =     " << boat      << " ***** \n"
+             << " &boats[i] = " << &boats[i] << " ***** \n"
+             << " *boat =     " << *boat     << " ***** \n"
+             << " boats[i] =  " << boats[i]  << " ***** \n";
+
+
         setBoat(&map, boat);
         boats.pop_back();
     }
@@ -147,8 +155,6 @@ bool canPlaceBoat (Board * map, int row, int collum, int direction, unsigned sho
         cout << "bSize: " << *boatSize << endl;
 
         for (int m = row; m < (row + *boatSize)-1; m++){
-            cout << "its in once" << endl;
-        //problem next line!
             if (map->matrix[m][collum] != '.')
                 return false;
         }
