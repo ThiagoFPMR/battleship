@@ -3,7 +3,7 @@
 using namespace std;
 
 Board boardBuilder (int rows, int collums) {
-    vector <unsigned short int> boats = {1, 1, 1, 1, 2, 2, 2, 3, 3, 4};
+    vector <unsigned short int> boats = { 1, 1, 1, 1, 2, 2, 2, 3, 3, 4};
     Board map = Board (rows, collums);
     std::ostringstream OSS;
 
@@ -18,9 +18,9 @@ Board boardBuilder (int rows, int collums) {
     //Inicializa a matriz
     setup(&map);
 
-    for (int i = boats.back(); i >= 0; i--) {
+    for (int i = (boats.size()-1); i > 0; --i) {
         unsigned short int* boat = &boats[i];
-        cout << " i : " << i << endl;
+        cout << " i :         " << i << endl;
         cout << " &map  =     " << &map      << " ***** \n"
              << " boat  =     " << boat      << " ***** \n"
              << " &boats[i] = " << &boats[i] << " ***** \n"
@@ -29,8 +29,9 @@ Board boardBuilder (int rows, int collums) {
 
 
         setBoat(&map, boat);
-        boats.pop_back();
+        //boats.pop_back();
     }
+    cout << "over" << endl;
     /*Lembrar para quando for implementar o resto:
         vector::back
         vector::pop_back
