@@ -18,7 +18,7 @@ public:
     // Retorna collums
     std::string fleet;
     // Armada a ser impressa
-    std::vector <std::vector <char> > matrix;
+    std::vector <std::vector <std::string> > matrix;
     // Matriz a ser impressa
 };
 

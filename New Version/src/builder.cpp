@@ -5,13 +5,10 @@ using namespace std;
 Board boardBuilder (int rows, int collums) {
     vector <unsigned short int> boats = { 1, 1, 1, 1, 2, 2, 2, 3, 3, 4};
     Board map = Board (rows, collums);
-    std::ostringstream OSS;
+    ostringstream OSS;
 
 
     //top da armada
-    OSS << "Linhas: " << rows 
-        << "Colunas: " << collums 
-        << "\n\n";
 
     map.fleet+= OSS.str();
 
@@ -20,16 +17,9 @@ Board boardBuilder (int rows, int collums) {
 
     for (int i = (boats.size()-1); i > 0; --i) {
         unsigned short int* boat = &boats[i];
-        cout << " i :         " << i << endl;
-        cout << " &map  =     " << &map      << " ***** \n"
-             << " boat  =     " << boat      << " ***** \n"
-             << " &boats[i] = " << &boats[i] << " ***** \n"
-             << " *boat =     " << *boat     << " ***** \n"
-             << " boats[i] =  " << boats[i]  << " ***** \n";
-
+        cout << " ...loading " << i << endl;
 
         setBoat(&map, boat);
-        //boats.pop_back();
     }
     cout << "over" << endl;
     /*Lembrar para quando for implementar o resto:
@@ -45,8 +35,7 @@ void setup (Board * map) {
     for (int m = 0; m < map->rows(); m++){
         map->matrix.push_back({});
         for (int n = 0; n < map->collums(); n++){
-            map->matrix[m].push_back('.');
-            cout << m << " " << n << " | ";
+            map->matrix[m].push_back(".");
         }
         cout << endl;
     }
@@ -68,7 +57,7 @@ void setBoat (Board * map, unsigned short int* boatSize) {
     }
     else {
         // Adicionando o barco à armada
-        std::ostringstream OSS;
+        ostringstream OSS;
 
         OSS << *boatSize << " "
             << row       << " " 
@@ -81,55 +70,55 @@ void setBoat (Board * map, unsigned short int* boatSize) {
         if (direction == 0) { // Se for horizontal
             // Posiciona o barco
             for (int n = collum; n < collum + *boatSize; n++)
-                map->matrix[row][n] = '◼︎';
+                map->matrix[row][n] = "◼︎";
             // Ocupa posições acima do barco
             if (row > 0)
                 for (int n = collum; n < collum + *boatSize; n++)
-                    map->matrix[row - 1][n] = '*';
+                    map->matrix[row - 1][n] = "*";
             // Ocupa posições abaixo do barco
             if (row < map->rows() - 1)
                 for (int n = collum; n < collum + *boatSize; n++)
-                    map->matrix[row + 1][n] = '*';
+                    map->matrix[row + 1][n] = "*";
             // Ocupa posições à direita e à esquerda (e diagonais)
             if (collum > 0) {
-                map->matrix[row][collum - 1] = '*';
+                map->matrix[row][collum - 1] = "*";
                 if (row > 0)
-                    map->matrix[row - 1][collum - 1] = '*';
+                    map->matrix[row - 1][collum - 1] = "*";
                 if (row < map->rows() - 1)
-                    map->matrix[row + 1][collum - 1] = '*';
+                    map->matrix[row + 1][collum - 1] = "*";
             }
             if (collum < map->collums() - *boatSize) {
-                map->matrix[row][collum + *boatSize] = '*';
+                map->matrix[row][collum + *boatSize] = "*";
                 if (row > 0)
-                    map->matrix[row - 1][collum + *boatSize] = '*';
+                    map->matrix[row - 1][collum + *boatSize] = "*";
                 if (row < map->rows() - 1)
-                    map->matrix[row + 1][collum + *boatSize] = '*';
+                    map->matrix[row + 1][collum + *boatSize] = "*";
             }
         }
         if (direction == 1) { // Se for vertical
             // Posiciona o barco
             for (int m = row; m < row + *boatSize; m++)
-                map->matrix[m][collum] = '◼︎';
+                map->matrix[m][collum] = "◼︎";
             // Ocupa poisções à esqueda do barco
             if (collum > 0)
                 for (int m = row; m < row + *boatSize; m++)
-                    map->matrix[m][collum - 1] = '*';
+                    map->matrix[m][collum - 1] = "*";
             // Ocupa posições à direita do barco
             if (collum < map->collums() - 1)
                 for (int m = row; m < row + *boatSize; m++)
-                    map->matrix[m][collum + 1] = '*';
+                    map->matrix[m][collum + 1] = "*";
             // Ocupa posições abaixo e acima (e diagonais)
             if (row > 0) { 
-                map->matrix[row - 1][collum] = '*';
+                map->matrix[row - 1][collum] = "*";
                 if (collum > 0)
-                    map->matrix[row - 1][collum - 1] = '*';
+                    map->matrix[row - 1][collum - 1] = "*";
                 if (collum < map->collums() - 1)
                     map->matrix[row - 1][collum + 1];
             }
             if (row < map->rows() - *boatSize)
-                map->matrix[row + *boatSize][collum] = '*';
+                map->matrix[row + *boatSize][collum] = "*";
                 if (collum > 0)
-                    map->matrix[row + *boatSize][collum - 1] = '*';
+                    map->matrix[row + *boatSize][collum - 1] = "*";
                 if (collum < map->collums() - 1)
                     map->matrix[row + *boatSize][collum + 1];
         }
@@ -143,7 +132,7 @@ bool canPlaceBoat (Board * map, int row, int collum, int direction, unsigned sho
         if (!(collum < map->collums() - *boatSize && collum >= 0))
             return false;
         for (int n = collum; n < collum + *boatSize; n++)
-            if (map->matrix[row][n] != '.')
+            if (map->matrix[row][n] != ".")
                 return false;
     }
     if (direction == 1) { // Se for vertical
@@ -152,11 +141,8 @@ bool canPlaceBoat (Board * map, int row, int collum, int direction, unsigned sho
         if (!(collum < map->collums() && collum >= 0))
             return false;
 
-        cout << " '\\'--------------------------------------------------'/' " << endl;
-        cout << "bSize: " << *boatSize << endl;
-
         for (int m = row; m < (row + *boatSize)-1; m++){
-            if (map->matrix[m][collum] != '.')
+            if (map->matrix[m][collum] != ".")
                 return false;
         }
     }

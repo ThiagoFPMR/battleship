@@ -23,16 +23,20 @@ int main(int argc, char * argv[]) {
     fleetFile.open("../data/fleet.txt");
     matrixFile.open("../data/matrix.txt");
 
-    fleetFile << "Linhas: " << rows 
-              << "Colunas: " << collums 
-              << "\n\n\n";
+    fleetFile   << "mapas: "    << quantity << " "
+                << "Linhas: "   << rows     << " "
+                << "Colunas: "  << collums 
+                << "\n\n\n";
 
     // Alocando dinâmicamente o vetor de matrizes e printando armada
     for(int i = 1; i <= quantity; i++){
         boardList.push_back(boardBuilder(rows, collums));
-        cout << boardList[i].rows();
-        fleetFile << boardList[i].fleet << "\n\n";
-        matrixFile << boardList[i].fleet << "\n\n";  //not done
+
+        // armazenar board
+        fleetFile << boardList[i-1].fleet << "\n";
+        for(int m = 0; m < boardList.size(); m++)
+            for(int n = 0; n < boardList.size(); n++)
+                matrixFile << boardList[i-1].matrix[m][n] << "\n";  //not done
     }
     fleetFile.close();
     matrixFile.close();
