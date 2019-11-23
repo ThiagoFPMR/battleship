@@ -33,11 +33,11 @@ Board boardBuilder (int rows, int collums) {
 
 void setup (Board * map) {
     for (int m = 0; m < map->rows(); m++){
-        map->matrix.push_back({});
-        for (int n = 0; n < map->collums(); n++){
-            map->matrix[m].push_back(".");
-        }
-        cout << endl;
+        vector <string> inicializer;
+        for (int n = 0; n < map->collums(); n++)
+            inicializer.push_back(".");
+        
+        map->matrix.push_back(inicializer);
     }
 }
 
