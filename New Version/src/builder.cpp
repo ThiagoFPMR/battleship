@@ -15,7 +15,7 @@ Board boardBuilder (int rows, int collums) {
     //Inicializa a matriz
     setup(&map);
 
-    for (int i = (boats.size()-1); i > 0; --i) {
+    for (int i = (boats.size()-1); i >= 0; --i) {
         unsigned short int* boat = &boats[i];
         cout << " ...loading " << i << endl;
 
