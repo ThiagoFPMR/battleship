@@ -33,6 +33,7 @@ int main(int argc, char * argv[]) {
         boardList.push_back(boardBuilder(rows, collums));
 
         // armazenar board
+        fleetFile << boardList[i-1].fleet << "\n";
         for(int m = 0; m < boardList[i-1].matrix.size(); m++){
             for(int n = 0; n < boardList[i-1].matrix[m].size(); n++)
                 matrixFile << boardList[i-1].matrix[m][n];  //not done
