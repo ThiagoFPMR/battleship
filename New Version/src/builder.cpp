@@ -141,10 +141,16 @@ bool canPlaceBoat (Board * map, int row, int collum, int direction, unsigned sho
         if (!(collum < map->collums() && collum >= 0))
             return false;
 
-        for (int m = row; m < (row + *boatSize)-1; m++){
-            if (map->matrix[m][collum] != ".")
+        if (*boatSize == 1) 
+            if (map->matrix[row][collum] != ".")
                 return false;
+        else { 
+            for (int m = row; m < (row + *boatSize)-1; m++){
+                if (map->matrix[m][collum] != ".")
+                    return false;
+            }
         }
     }
+    cout << map->matrix[row][collum] << " " << *boatSize << endl;
     return true;
 }
