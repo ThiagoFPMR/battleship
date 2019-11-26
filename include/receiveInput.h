@@ -1,8 +1,8 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-#define MIN_ROW 7
-#define MIN_COL 7
+#define MIN_ROW 9
+#define MIN_COL 9
 #define MAX_ROW 16
 #define MAX_COL 16
 

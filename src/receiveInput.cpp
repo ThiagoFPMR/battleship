@@ -11,8 +11,8 @@ void message(string error="")
 
     cout << "Usage: [<options>] <number_of_puzzles>\n"
          << "Program options are:\n"
-         << "--Row <num>    Specify the number of rows for the matrix, with '<num>' in the range [7, 16]. The deafult value is 10.\n"
-         << "--Col <num>    Specify the number of collums for the matrix, with '<num>' in the range [7, 16]. The deafult value is 10."
+         << "--Row <num>    Specify the number of rows for the matrix, with '<num>' in the range [9, 16]. The deafult value is 10.\n"
+         << "--Col <num>    Specify the number of collums for the matrix, with '<num>' in the range [9, 16]. The deafult value is 10."
          << "Requested input is:\n"
          << "   number of puzzles   The number of puzzles to be generated, in the range [1, 100].\n";
 
