@@ -11,11 +11,9 @@ Board boardBuilder (int rows, int collums) {
 
     for (int i = (boats.size()-1); i >= 0; --i) {
         unsigned short int* boat = &boats[i];
-        cout << " ...loading " << i << endl;
 
         setBoat(&map, boat);
     }
-    cout << "over" << endl;
     /*Lembrar para quando for implementar o resto:
         vector::back
         vector::pop_back
@@ -190,6 +188,5 @@ bool canPlaceBoat (Board * map, int row, int collum, int direction, unsigned sho
             
         
     }
-    cout << map->matrix[row][collum] << " " << *boatSize << endl;
     return true;
 }

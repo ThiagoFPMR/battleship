@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void errorMsg(string error)
+void message(string error="")
 {
     error = "";
     if (error != "")
@@ -19,7 +19,7 @@ void errorMsg(string error)
     exit(0);
 }
 
-string strToLower(string str)
+string str_tolower(string str)
 {
 
     for (char &c : str)
@@ -28,79 +28,93 @@ string strToLower(string str)
     return str;
 }
 
-void receiveInput (int argc, char * argv[], int * quantity, int * rows, int * collums) {
-    // Apenas nome do progrma (sem argumentos)
-    if (argc == 1)
-        errorMsg();
+void receiveInput (int argc, char * argv[], int * np, int * r, int * c)
+{
 
-    // Mais do que 6 argumentos (excesso)
-    if (argc > 6)
-        errorMsg("Too many arguments!");
+	// Se não houver arguemntos (apenas o nome do programa), exibimos a mensagem de ajuda.
+    if ( argc == 1 )
+        message();
+	// Se tivermos mais do que 6 argumentos, finalizamos também.
+    if ( argc > 6 )
+        message("Too many argumnents!");
+	// Uma outra abordagem, talvez a melhor, seria apenas ignorar os argumentos
+	// extras. Nesse caso, o `for` abaixo precisaria ser ajustado
+	// para que parasse quando alcançar argc (número de argumentos) OU
+	// chegar a 6, o que acontecer primeiro.
 
-    for (auto i{1}; i < argc; i++)
+    // Processar os argumentos
+    for ( auto i{1} ; i < argc ; ++i )
     {
-
-        auto s_arg = strToLower(argv[i]);
-
-        if (s_arg == "-r" || s_arg == "--r" || s_arg == "--row" || s_arg == "-row")
+        // convert the current argument to lower case.
+        auto s_arg = str_tolower( argv[i] );
+		// Testar se o argumento é uma das possibilidade que o programa deve aceitar.
+        if ( s_arg == "-r" or s_arg == "--row" or s_arg == "-row" or s_arg == "--r"  )
         {
+			// Aqui executamos 3 testes em sequência:
             int nrows{0};
-
-            // Teste 1
-            if ((i + 1) == argc)
-                errorMsg("Missing number of rows!");
-
-            // Teste 2
-            try
-            {
-                nrows = std::stoi(argv[i++]);
+			// Teste #1: Para evitar segfault, precisamos verificar se existe o
+			// próximo argumento **antes** de tentar acessa-lo.
+            if ( (i+1) == argc )
+                message("Missing number of rows!");
+			// Teste #2: Aqui usamos tratamento de exeções para verificar
+			// se a converdsão de string para inteiro deu certo.
+			// Lemnbre que precisamos converter, "12" para inteiro 12.
+            try {
+                nrows = std::stoi( argv[++i] );
             }
-            catch (const std::invalid_argument &e)
-            {
-                errorMsg("Invalid value for row!");
+            catch( const std::invalid_argument& e ){
+                message("Invalid value for row!");
             }
-
-            // Teste 3
-            if (nrows < MIN_ROW || nrows > MAX_ROW)
-                errorMsg("Number of rows out of the acceptable range!");
-
-            *rows = nrows;
+			// Teste #3: Neste ponto, já temos um inteiro válido. Resta saber
+			// se esse inteiro está dentro da faixa de valores que o programa
+			// deve aceitar.
+            if ( nrows < MIN_ROW or nrows > MAX_ROW )
+                message("Number of rows out of the acceptable range!");
+			// Quando chegamos aqui, temos um número inteiro válido que
+			// corresponde à quantidade linhas que o programa deve usar
+			// para criar tabuleiros.
+            *r = nrows; // Copiar da variável temporária para a definitiva, 'r'.
         }
-        else if (s_arg == "-c" || s_arg == "--c" || s_arg == "--col" || s_arg == "-col")
+        else if ( s_arg == "-c" or s_arg == "--col" or s_arg == "-col" or s_arg == "--c"  )
         {
+           	// Aqui executamos 3 testes em sequência:
             int ncols{0};
-
-            try
-            {
-                ncols = std::stoi(argv[i++]);
+			// Teste #1: Para evitar segfault, precisamos verificar se existe o
+			// próximo argumento **antes** de tentar acessa-lo.
+            if ( (i+1) == argc )
+                message("Missing number of rows!");
+			// Teste #2: Aqui usamos tratamento de exeções para verificar
+			// se a converdsão de string para inteiro deu certo.
+			// Lemnbre que precisamos converter, "12" para inteiro 12.
+            try {
+                ncols = std::stoi( argv[++i] );
             }
-            catch (const std::invalid_argument &e)
-            {
-                errorMsg("Invalid value for collum!");
+            catch( const std::invalid_argument& e ){
+                message("Invalid value for row!");
             }
-
-            if (ncols < MIN_COL || ncols > MAX_COL)
-                errorMsg("Number of collums out of the acceptable range!");
-
-            *collums = ncols;
+			// Teste #3: Neste ponto, já temos um inteiro válido. Resta saber
+			// se esse inteiro está dentro da faixa de valores que o programa
+			// deve aceitar.
+            if ( ncols < MIN_ROW or ncols > MAX_ROW )
+                message("Number of rows out of the acceptable range!");
+			// Quando chegamos aqui, temos um número inteiro válido que
+			// corresponde à quantidade linhas que o programa deve usar
+			// para criar tabuleiros.
+            *c = ncols; // Copiar da variável temporária para a definitiva, 'r'.
         }
-        else
+        else // # of puzzles
         {
             int npuzzles{1};
-
-            try
-            {
-                npuzzles = std::stoi(argv[i]);
+            try {
+                npuzzles = std::stoi( argv[i] );
             }
-            catch (const std::invalid_argument &e)
-            {
-                errorMsg("Invalid value for number of puzzles!");
+            catch( const std::invalid_argument& e ){
+                message("Invalid value for number of puzzles!");
             }
-
-            if (npuzzles < MIN_NPUZ || npuzzles > MAX_NPUZ)
-                errorMsg("Number of puzzles out of the acceptable range!");
-
-            *quantity = npuzzles;
+            if ( npuzzles < MIN_NPUZ or npuzzles > MAX_NPUZ )
+                message("The requested number of puzzles is out of the acceptable range!");
+            *np = npuzzles;
         }
     }
+    std::cout << ">>> cols = " << *c << ", rows = "  << *r << ", npuzzles = " << *np << std::endl;
 }

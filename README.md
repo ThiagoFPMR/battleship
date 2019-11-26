@@ -7,7 +7,7 @@ e colunas desejado.
 
 Argumentos: [<opcionais>] número de mapas
 
-Opicionais: --Rows       número de linhas
-	    --Collums    número de colunas
+Opicionais: --Row    número de linhas
+	    	--Col    número de colunas
 
-Exemplo: --Rows 12 --Collums 11 8 (São gerados 8 mapas de 11 colunas e 12 linhas)
+Exemplo: --Row 12 --Col 11 8 (São gerados 8 mapas de 11 colunas e 12 linhas)
