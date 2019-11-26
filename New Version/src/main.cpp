@@ -19,27 +19,65 @@ int main(int argc, char * argv[]) {
         collums{STD_COL};
     receiveInput(argc, argv, &quantity, &rows, &collums);
     
-    // print head da armada
-    fleetFile.open("../data/fleet.txt");
-    matrixFile.open("../data/matrix.txt");
+    // salvar head dos arquivos
+    fleetFile.open("../data/fleet.bp");
+    matrixFile.open("../data/matrix.bp");
 
-    fleetFile   << "mapas: "    << quantity << " "
-                << "Linhas: "   << rows     << " "
-                << "Colunas: "  << collums 
+    fleetFile   << quantity << "\n"
                 << "\n\n\n";
+
+    matrixFile  << quantity << "\n";
+
 
     // Alocando dinâmicamente o vetor de matrizes e printando armada
     for(int i = 1; i <= quantity; i++){
+        //incializa matriz
         boardList.push_back(boardBuilder(rows, collums));
 
         // armazenar board
         fleetFile << boardList[i-1].fleet << "\n";
-        for(int m = 0; m < boardList[i-1].matrix.size(); m++){
-            for(int n = 0; n < boardList[i-1].matrix[m].size(); n++)
-                matrixFile << boardList[i-1].matrix[m][n];  //not done
-            matrixFile << "\n";
+
+        //salvar head por puzle
+        matrixFile  << rows     << " "
+                    << collums
+                    << "\n";
+        fleetFile   << rows     << " "
+                    << collums << "\n";
+
+        if(collums <= 9){
+            matrixFile << "   ";
+            for(int i = 1; i <= collums; i++)
+                matrixFile << i << " ";
         }
-        matrixFile << "\n\n\n";
+        else{
+            matrixFile << "                      ";
+            for(int i = 10; i <= collums; i++)
+                matrixFile << i/10 << " "; //primeiro digito
+
+            matrixFile << "\n    ";
+            for(int i = 1; i <= collums; i++)
+                if( i < 10 )
+                    matrixFile << i << " "; //numero completo
+                else 
+                    matrixFile << (i % 10) << " "; //segundo digito
+        }
+        matrixFile << "\n";
+
+            //salvar corpo
+        for(int m = 0; m < boardList[i-1].matrix.size(); m++){
+            if(rows > 9)
+                if (m < 9)
+                    matrixFile  << " ";
+            matrixFile << m+1 << "[ ";
+            for(int n = 0; n < boardList[i-1].matrix[m].size(); n++)
+                if (boardList[i-1].matrix[m][n] != "* ")
+                    matrixFile << boardList[i-1].matrix[m][n];
+                else
+                    matrixFile << ". ";
+            
+            matrixFile << "]\n";
+        }
+        matrixFile << "\n\n";
     }
     fleetFile.close();
     matrixFile.close();
